@@ -1,6 +1,6 @@
 #!/bin/sh
 
-name="ipsec-ping"
+name="ipsec_ping"
 command="/root/${name}-script.sh"
 pidfile="/root/${name}.pid"
 
@@ -9,14 +9,15 @@ rc_start() {
 	rc_stop
 
 	# Start 
-	${command} & pidnum="$(/bin/pgrep $name)
+	${command} & 
+        pidnum="$(/bin/pgrep $name)
 
 	if [ -n "${pidnum}" ]; then
-		echo "ipsec-ping started (${pidnum})"
-		/usr/bin/logger -p daemon.info -t ipsec-ping "ipsec-ping started"
+		echo "ipsec_ping started (${pidnum})"
+		/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping started"
 	else
-		echo "ipsec-ping failed to start"
-		/usr/bin/logger -p daemon.info -t ipsec-ping "ipsec-ping failed to start"
+		echo "ipsec_ping failed to start"
+		/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping failed to start"
 	fi
 }
 
@@ -24,17 +25,17 @@ rc_stop() {
 	pidnum="$(/bin/pgrep $name)"
 	if [ -n "${pidnum}" ]; then
 		/usr/bin/killall $name
-		echo "ipsec-ping stopped (${pidnum})"
-		/usr/bin/logger -p daemon.info -t ipsec-ping "ipsec-ping stopped"
+		echo "ipsec_ping stopped (${pidnum})"
+		/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping stopped"
 	fi
 }
 
 rc_status() {	
 	pidnum="$(/bin/pgrep $name)"
 	if [ -n "${pidnum}" ]; then
-		echo "ipsec-ping is running (${pidnum})"
+		echo "ipsec_ping is running (${pidnum})"
 	else
-		echo "ipsec-ping is not running"
+		echo "ipsec_ping is not running"
 	fi
 }
 
