@@ -10,7 +10,7 @@ rc_start() {
 
 	# Start 
 	${command} & 
-        pidnum="$(/bin/pgrep $name)
+        pidnum="$(/bin/pgrep $name)"
 
 	if [ -n "${pidnum}" ]; then
 		echo "ipsec_ping started (${pidnum})"
