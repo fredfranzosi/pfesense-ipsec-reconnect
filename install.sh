@@ -1,5 +1,5 @@
 #!/bin/sh
-rm /root/ipsec_ping-script.sh
+rm /root/ipsec_ping.sh
 
 # Obter o endereço IP da interface
 source_ip="$(ifconfig -v vtnet1 | grep -o 'inet [^ ]*' | cut -f2 -d' ')"
@@ -7,19 +7,19 @@ source_ip="$(ifconfig -v vtnet1 | grep -o 'inet [^ ]*' | cut -f2 -d' ')"
 # Comando para obter sub-redes modificadas
 subnets=$(/usr/local/sbin/ipsec status | awk '/con[0-9]+{[0-9]+}/ {gsub(/reqid|SPIs:|,|[a-zA-Z_]/, ""); print $4, $7}' | awk '/^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\//' | sort | uniq | awk -F'/' '{gsub(/0$/,"1",$1); gsub(/0$/,"254",$1); print $1; gsub(/1$/,"254",$1); print $1}')
 
-echo "while true; do" >> /root/ipsec_ping-script.sh
+echo "while true; do" >> /root/ipsec_ping.sh
 
 # Criar arquivo e adicionar linhas de comando ping
 echo "$subnets" | while read -r subnet; do
-  echo "ping -c 3 -S $source_ip $subnet > "/dev/null" &" >> /root/ipsec_ping-script.sh
+  echo "ping -c 3 -S $source_ip $subnet > "/dev/null" &" >> /root/ipsec_ping.sh
 done
 
-echo "sleep 10" >> /root/ipsec_ping-script.sh
-echo "done" >> /root/ipsec_ping-script.sh
+echo "sleep 10" >> /root/ipsec_ping.sh
+echo "done" >> /root/ipsec_ping.sh
 
-chmod +x ipsec_ping-script.sh
+chmod +x ipsec_ping.sh
 
-echo "Arquivo /root/ipsec_ping-script.sh criado"
+echo "Arquivo /root/ipsec_ping.sh criado"
 echo "Criando serviço no sistema..."
 
 rm /usr/local/etc/rc.d/ipsec_ping.sh
@@ -36,3 +36,6 @@ rm /tmp/temp_service.xml
 service ipsec_ping.sh start
 
 echo "Serviço criado"
+
+----------------------------------------------------
+fetch -o /root/install.sh https://raw.githubusercontent.com/matheus-nicolay/pfesense-ipsec-reconnect/main/install.sh ; chmod +x /root/install.sh ; /root/install.sh
