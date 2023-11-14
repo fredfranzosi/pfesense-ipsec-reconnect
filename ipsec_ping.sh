@@ -1,7 +1,7 @@
 #!/bin/sh
 
 name="ipsec_ping"
-command="/root/${name}-script.sh"
+command="/root/${name}.sh"
 
 rc_start() {
 	# Make sure all process are stopped
