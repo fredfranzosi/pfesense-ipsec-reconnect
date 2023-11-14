@@ -24,11 +24,9 @@ rc_start() {
 rc_stop() {	
 	pidnum="$(/bin/pgrep -f 'ipsec_ping')"
 	if [ -n "${pidnum}" ]; then
-		while [ -n "${pidnum}" ]; do
-			kill -9 $pidnum
-			echo "ipsec_ping stopped"
-			/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping stopped (${pidnum})"
-		done
+		kill -9 $pidnum
+		echo "ipsec_ping stopped"
+		/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping stopped (${pidnum})"
 	fi
 }
 
