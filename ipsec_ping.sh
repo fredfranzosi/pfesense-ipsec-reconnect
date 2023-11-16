@@ -1,14 +1,14 @@
 #!/bin/sh
 
 name="ipsec_ping"
-command="/root/${name}-script.sh"
+command="/root/${name}-script.sh &"
 
 rc_start() {
 	# Make sure all process are stopped
 	rc_stop
 
 	# Start 
-	$command &
+	$command
 	
 	pidnum="$(/bin/pgrep -f 'ipsec_ping')"
 
