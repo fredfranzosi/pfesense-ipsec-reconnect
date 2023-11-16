@@ -33,6 +33,6 @@ sed '/<\/acme>/r /tmp/temp_service.xml' /conf/config.xml > /conf/config.xml.tmp 
 
 rm /tmp/temp_service.xml
 
-service ipsec_ping.sh start
+service ipsec_ping.sh start &
 
 echo "Serviço criado"
