@@ -10,10 +10,10 @@ rc_start() {
 	# Start 
 	$command
 	
-	pidnum="$(/bin/pgrep -f 'ipsec_ping')"
+	pidnum="$(/bin/pgrep -f '/root/ipsec_ping-script.sh')"
 
 	if [ -n "${pidnum}" ]; then
-		echo "ipsec_ping started"
+		echo "ipsec_ping started  (pid ${pidnum})"
 		/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping started (${pidnum})"
 	else
 		echo "ipsec_ping failed to start"
@@ -22,7 +22,7 @@ rc_start() {
 }
 
 rc_stop() {	
-	pidnum="$(/bin/pgrep -f 'ipsec_ping')"
+	pidnum="$(/bin/pgrep -f '/root/ipsec_ping-script.sh')"
 	if [ -n "${pidnum}" ]; then
 		kill -9 $pidnum
 		echo "ipsec_ping stopped"
@@ -31,9 +31,9 @@ rc_stop() {
 }
 
 rc_status() {	
-	pidnum="$(/bin/pgrep -f 'ipsec_ping')"
+	pidnum="$(/bin/pgrep -f '/root/ipsec_ping-script.sh')"
 	if [ -n "${pidnum}" ]; then
-		echo "ipsec_ping is running"
+		echo "ipsec_ping is running (pid ${pidnum})"
 	else
 		echo "ipsec_ping is not running"
 	fi
