@@ -17,7 +17,7 @@ done
 echo "sleep 10" >> /root/ipsec_ping-script.sh
 echo "done" >> /root/ipsec_ping-script.sh
 
-chmod +x ipsec_ping-script.sh
+chmod +x /root/ipsec_ping-script.sh
 
 echo "Arquivo /root/ipsec_ping-script.sh criado"
 echo "Criando serviço no sistema..."
