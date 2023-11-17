@@ -1,5 +1,7 @@
 #!/bin/sh
-rm /root/ipsec_ping-script.sh || true
+if [ -f "/root/ipsec_ping-script.sh" ]; then
+    rm /root/ipsec_ping-script.sh
+else
 
 # Obter o endereço IP da interface
 source_ip="$(ifconfig -v vtnet1 | grep -o 'inet [^ ]*' | cut -f2 -d' ')"
@@ -39,8 +41,10 @@ if [ -n "$check_ipsec" ]; then
     #Criar serviço rc.d no padrão do pfSense
     echo "Criando serviço no sistema..."
 
-    rm /usr/local/etc/rc.d/ipsec_ping.sh || true
-
+    if [ -f "/usr/local/etc/rc.d/ipsec_ping.sh" ]; then
+        rm /usr/local/etc/rc.d/ipsec_ping.sh
+    else
+    
     fetch -o /usr/local/etc/rc.d/ipsec_ping.sh https://raw.githubusercontent.com/matheus-nicolay/pfesense-ipsec-reconnect/main/ipsec_ping.sh 
     chmod +x /usr/local/etc/rc.d/ipsec_ping.sh
 
