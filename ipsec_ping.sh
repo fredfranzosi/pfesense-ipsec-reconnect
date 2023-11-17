@@ -7,18 +7,25 @@ rc_start() {
 	# Make sure all process are stopped
 	rc_stop
 
-	# Start 
-	$command &
-	
-	pidnum="$(/bin/pgrep -f '/root/ipsec_ping-script.sh')"
+	if [ -f "/root/${name}-script.sh" ]; then
+    	# Start 
+		$command &
+		
+		pidnum="$(/bin/pgrep -f '/root/ipsec_ping-script.sh')"
 
-	if [ -n "${pidnum}" ]; then
-		echo "ipsec_ping started  (pid ${pidnum})"
-		/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping started (${pidnum})"
+		if [ -n "${pidnum}" ]; then
+			echo "ipsec_ping started  (pid ${pidnum})"
+			/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping started (${pidnum})"
+		else
+			echo "ipsec_ping failed to start"
+			/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping failed to start"
+		fi
 	else
-		echo "ipsec_ping failed to start"
-		/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping failed to start"
+		echo "ipsec_ping failed to start - script /root/${name}-script.sh don't exists"
+		/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping failed to start - script /root/${name}-script.sh don't exists"
 	fi
+
+	
 }
 
 rc_stop() {	
