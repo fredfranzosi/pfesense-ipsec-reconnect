@@ -26,7 +26,10 @@ rc_stop() {
         pidnum1="$(/bin/pgrep -f '/bin/sh service /root/ipsec_ping.sh start &')"
 	if [ -n "${pidnum}" ]; then
 		kill -9 $pidnum
-                kill -9 $pidnum1 || true
+  		if [ -n "${pidnum1}" ]; then
+                	kill -9 $pidnum1 || true
+		fi
+  
 		echo "ipsec_ping stopped (pid ${pidnum})"
 		/usr/bin/logger -p daemon.info -t ipsec_ping "ipsec_ping stopped (${pidnum})"
 	fi
