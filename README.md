@@ -5,5 +5,5 @@ Script shell para efetuar um ping na LAN do pfSense para IP's da rede interna de
 Rodar o seguinte comando na CLI do pfSense:
 
 ```
-rm /root/install.sh || true ; fetch -o /root/install.sh https://raw.githubusercontent.com/matheus-nicolay/pfesense-ipsec-reconnect/main/install.sh ; chmod +x /root/install.sh ; /root/install.sh
+rm /root/install.sh || true ; fetch -o /root/install.sh https://raw.githubusercontent.com/matheus-nicolay/pfesense-ipsec-reconnect/main/install.sh ; chmod +x /root/install.sh ; /root/install.sh install
 ```
