@@ -22,7 +22,7 @@ fi
 
 if [ -n "$check_ipsec" ]; then
     # Comando para obter sub-redes modificadas
-    subnets=$(/usr/local/sbin/ipsec status | awk '/con[0-9]+{[0-9]+}/ {gsub(/reqid|SPIs:|,|[a-zA-Z_]/, ""); print $4, $7}' | awk '/^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'\// | sort | uniq | awk -F'/' '{gsub(/0$/,"1",$1); gsub(/0$/,"254",$1); print $1; gsub(/1$/,"254",$1); print $1}')
+    subnets=$(/usr/local/sbin/ipsec status | awk '/con[0-9]+{[0-9]+}/ {gsub(/reqid|SPIs:|,|[a-zA-Z_]/, ""); print $4, $7}' | awk '/^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\//' | sort | uniq | awk -F'/' '{gsub(/0$/,"1",$1); gsub(/0$/,"254",$1); print $1; gsub(/1$/,"254",$1); print $1}')
 
     echo "while true; do" >> /root/ipsec_ping-script.sh
 
