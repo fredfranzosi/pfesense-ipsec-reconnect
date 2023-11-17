@@ -43,7 +43,7 @@ if [ -n "$check_ipsec" ]; then
 
     if [ -f "/usr/local/etc/rc.d/ipsec_ping.sh" ]; then
         rm /usr/local/etc/rc.d/ipsec_ping.sh
-    else
+    fi
     
     fetch -o /usr/local/etc/rc.d/ipsec_ping.sh https://raw.githubusercontent.com/matheus-nicolay/pfesense-ipsec-reconnect/main/ipsec_ping.sh 
     chmod +x /usr/local/etc/rc.d/ipsec_ping.sh
