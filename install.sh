@@ -1,7 +1,7 @@
 #!/bin/sh
 if [ -f "/root/ipsec_ping-script.sh" ]; then
     rm /root/ipsec_ping-script.sh
-else
+fi
 
 # Obter o endereço IP da interface
 source_ip="$(ifconfig -v vtnet1 | grep -o 'inet [^ ]*' | cut -f2 -d' ')"
