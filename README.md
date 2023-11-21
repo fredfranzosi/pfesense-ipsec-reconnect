@@ -32,6 +32,7 @@ service ipsec_ping.sh stop
 
 ### Issues
 - Limitado a tentar pingar apenas para IP's internos remotos com final 254 e 1
+- Caso não existam IP's internos remotos com final 254 e 1, o script irá constantemente reiniciar a VPN
 - Pode não funcionar para IPSEC com mais de uma fase 2 por conexão
 - Pela interface o serviço fica como parado, mesmo estando rodando:
   ![2023-11-17_14-42](https://github.com/matheus-nicolay/pfesense-ipsec-reconnect/assets/58345766/4882b296-ad0b-48e5-86c9-ce6de1d5a7ca)
