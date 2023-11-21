@@ -1,7 +1,7 @@
 #!/bin/sh
 
 name="ipsec_ping"
-command="/root/${name}-script.py &"
+command="/root/${name}-script.py"
 
 rc_start() {
 	# Make sure all process are stopped
