@@ -22,8 +22,8 @@ def main():
             con_index = connections.index(ip_pair) + 1
             ip1, ip2 = ip_pair
 
-            ping_ip1 = subprocess.call(f"ping -c 3 -S {source_ip} {ip1} > /dev/null", shell=True)
-            ping_ip2 = subprocess.call(f"ping -c 3 -S {source_ip} {ip2} > /dev/null", shell=True)
+            ping_ip1 = subprocess.call(f"ping -c 3 -t 2 -S {source_ip} {ip1} > /dev/null", shell=True)
+            ping_ip2 = subprocess.call(f"ping -c 3 -t 2 -S {source_ip} {ip2} > /dev/null", shell=True)
 
             if ping_ip1 != 0 and ping_ip2 != 0:
                 #print(f"Reiniciando conexão con{con_index}...")
