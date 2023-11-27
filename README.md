@@ -32,6 +32,7 @@ service ipsec_ping.sh stop
 
 ### Issues
 - Limitado a tentar pingar apenas para IP's internos remotos com final 254 e 1
+- Quando a subrede estiver configurada no pfSense com um IP diferente de .0/24, o script shell não irá mudar a string da forma correta
 - Caso não existam IP's internos remotos com final 254 e 1, o script irá constantemente reiniciar a VPN
 - Pode não funcionar para IPSEC com mais de uma fase 2 por conexão
 - Pela interface o serviço fica como parado, mesmo estando rodando:
