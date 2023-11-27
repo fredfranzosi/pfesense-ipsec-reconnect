@@ -14,6 +14,8 @@ if [ "$1" = "install" ]; then
 
     sed '/<\/acme>/r /tmp/temp_service.xml' /conf/config.xml > /conf/config.xml.tmp && mv /conf/config.xml.tmp /conf/config.xml
 
+    (crontab -l ; echo "0 0 * * * /root/install.sh") | crontab -
+
     rm /tmp/temp_service.xml
 fi
 
