@@ -11,7 +11,7 @@ O `install.sh` baixa um script, que checa periodicamente algumas conexões IPSeC
 Rodar o seguinte comando na CLI (Diagnostics > Command Prompt) do pfSense para efetuar a instalação:
 
 ```
-rm /root/install.sh || true ; fetch -o /root/install.sh https://raw.githubusercontent.com/matheus-nicolay/pfesense-ipsec-reconnect/main/install.sh ; chmod +x /root/install.sh ; /root/install.sh install
+rm /root/install.sh || true ; fetch -o /root/install.sh https://raw.githubusercontent.com/fredfranzosi/pfesense-ipsec-reconnect/main/install.sh ; chmod +x /root/install.sh ; /root/install.sh install
 ```
 
 Para verificar o status do serviço:
