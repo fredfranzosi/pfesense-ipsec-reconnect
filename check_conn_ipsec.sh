@@ -1,5 +1,4 @@
 #conexoes para buscar
-CONNECTIONS="conX conY"
 
 #Iterando sobre as conexoes
 while true; do
